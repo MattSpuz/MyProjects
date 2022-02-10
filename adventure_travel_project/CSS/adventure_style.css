@@ -1,0 +1,114 @@
+/* CSS Styling for Adventure Travel */
+
+*. {
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+.container-fluid {
+	width: 100%;
+	margin: 0 auto;
+	font-family:Helvetica, Ariel, sans-serif;
+}
+
+.container {
+	padding: 5px;
+}
+
+body {
+	background-color: #99ffcc;
+	background-image: url("../images/webb.png");
+}
+
+header {
+	background-color: white;
+}
+
+.row {
+	padding: 2px;
+}
+
+.heading {
+	font-family: 'Open Sans', sans-serif;
+}
+
+a:link {
+	color:white;
+	text-decoration: none;	
+}
+
+.navsize {
+	font-size: 38px;
+}
+
+h3, p {
+	padding: 10px;
+}
+
+nav  {
+	padding:0.2em;
+	font-size:0.8em;
+}
+
+nav ul{		
+		
+}
+		
+nav ul li {
+		list-style-type:none;	
+		margin-right:1.8em;	
+}
+		
+nav a 	{
+		text-decoration:none;
+}
+nav a:hover {
+			list-style-type:none;	
+			color:red;
+}
+
+.lightgray {
+	background-color: #e6e6e6;
+}
+
+.anotherlightgray {
+	background-color: #d6d6c2;
+}
+
+.images {
+	margin:20px;
+}
+
+.imagesize {
+	max-width:125px;
+}
+
+.leftline {
+	border-left: 2px dotted black;
+}
+
+.imageborder {
+	border: 5px solid black;
+}
+
+.imageroundedborder {
+	border: 5px solid black;
+	border-radius: 10px;
+}
+
+.padding {
+	padding: 20px;
+}
+
+.margins {
+	margin: 20px;
+}
+
+.marginsup {
+	margin-top:2px;
+}
+
+.bottomline {
+	border-bottom:2px dashed black;
+}
