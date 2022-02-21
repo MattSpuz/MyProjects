@@ -19,6 +19,7 @@ namespace Calculator
     {
         List<string> equate = new List<string>();
         double result = 0;
+        int position = 0;
         public Form1()
         {
             InitializeComponent();
@@ -44,13 +45,21 @@ namespace Calculator
         }
         private void StoreValue() //used to store numbers
         {
+            if (equate.Count == 0 && inputAndOutput.Text == "")
+            {
+                return;
+            }
             equate.Add(inputAndOutput.Text);
             inputAndOutput.Text = "";
             inputAndOutput.Focus();
+
         }
         private void StoreSymbol() //used to store symbols
         {
             string input = inputAndOutput.Text;
+
+            //this is to test if there is a symbol behind the number
+            //that has yet to be stored.
             if (input == "(" || input == ")" || input == "^" || input == "/" ||
                 input == "*" || input == "-" || input == "+")
             {
@@ -63,25 +72,25 @@ namespace Calculator
         //translates and solves a string equation
         private double CalculateEquation() 
         {
+            
             while (equate.Count != 1)
             {
-                for (int i = 0; i < equate.Count; i++) //checking for /
+                for (int i = 0 + position; i < equate.Count; i++) //checking for (
                 {
                     if (equate.ElementAt(i) == "(")
                     {
+                        //store the position of the parenthises
+                        position += i + 1;
+
                         //enter a method within a method until you reach 
                         //the end of the parenthises
                         result = CalculateEquation();
-                        equate.RemoveAt(i);
-                        equate.RemoveAt(i - 2);
-                        equate[i - 1] = result.ToString();
-                    }
-                    else if(equate.ElementAt(i) == ")")
-                    {
-                        return result;
+
+                        //reset the position
+                        position -= i + 1;
                     }
                 }
-                for (int i = 0; i < equate.Count; i++) //checking for /
+                for (int i = 0 + position; i < equate.Count; i++) //checking for /
                 {
                     if (equate.ElementAt(i) == "/")
                     {
@@ -90,10 +99,34 @@ namespace Calculator
                         equate.RemoveAt(i + 1);
                         equate.RemoveAt(i);
                         equate[i - 1] = result.ToString();
-
+                        i--; //reset i 
                     }
                 }
-                for (int i = 0; i < equate.Count; i++) //checking for =
+                for (int i = 0 + position; i < equate.Count; i++) //checking for *
+                {
+                    if (equate.ElementAt(i) == "*")
+                    {
+                        result = Convert.ToDouble(equate[i - 1]) * Convert.ToDouble(equate[i + 1]);
+
+                        equate.RemoveAt(i + 1);
+                        equate.RemoveAt(i);
+                        equate[i - 1] = result.ToString();
+                        i--; //reset i 
+                    }
+                }
+                for (int i = 0 + position; i < equate.Count; i++) //checking for -
+                {
+                    if (equate.ElementAt(i) == "-")
+                    {
+                        result = Convert.ToDouble(equate[i - 1]) - Convert.ToDouble(equate[i + 1]);
+
+                        equate.RemoveAt(i + 1);
+                        equate.RemoveAt(i);
+                        equate[i - 1] = result.ToString();
+                        i--; //reset i 
+                    }
+                }
+                for (int i = 0 + position; i < equate.Count; i++) //checking for +
                 {
                     if (equate.ElementAt(i) == "+")
                     {
@@ -102,7 +135,19 @@ namespace Calculator
                         equate.RemoveAt(i + 1);
                         equate.RemoveAt(i);
                         equate[i - 1] = result.ToString();
+                        i--; //reset i 
+                        
 
+                    }
+                }
+                for (int i = 0 + position; i < equate.Count; i++) //checking for )
+                {
+                    if (equate.ElementAt(i) == ")")
+                    {
+                        equate.RemoveAt(i);
+                        equate.RemoveAt(i - 2);
+
+                        return result;
                     }
                 }
             }
