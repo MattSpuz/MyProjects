@@ -117,6 +117,10 @@ namespace Calculator
                         equate[i - 1] = result.ToString();
                         i--; //reset i 
                     }
+                    //we can't go beyond the right parenthises 
+                    //so we end the loop
+                    else if (equate.ElementAt(i) == ")")
+                        i = equate.Count + 1;
                 }
                 for (int i = 0 + position; i < equate.Count; i++) //checking for -
                 {
@@ -129,6 +133,10 @@ namespace Calculator
                         equate[i - 1] = result.ToString();
                         i--; //reset i 
                     }
+                    //we can't go beyond the right parenthises 
+                    //so we end the loop
+                    else if (equate.ElementAt(i) == ")")
+                        i = equate.Count + 1;
                 }
                 for (int i = 0 + position; i < equate.Count; i++) //checking for +
                 {
@@ -141,6 +149,10 @@ namespace Calculator
                         equate[i - 1] = result.ToString();
                         i--; //reset i 
                     }
+                    //we can't go beyond the right parenthises 
+                    //so we end the loop
+                    else if (equate.ElementAt(i) == ")")
+                        i = equate.Count + 1;
                 }
                 for (int i = 0 + position; i < equate.Count; i++) //checking for )
                 {
@@ -148,7 +160,18 @@ namespace Calculator
                     {
                         equate.RemoveAt(i);
                         equate.RemoveAt(i - 2);
+                        i -= 2;
 
+                        //if there is a number behind the parenthises than
+                        //it must be multiplied
+                        if (i > 0)
+                        {
+                            double j;
+                            if (double.TryParse(equate.ElementAt(i - 1), out j))
+                            {
+                                equate.Insert(i, "*");
+                            }
+                        }
                         return result;
                     }
                 }
@@ -161,7 +184,7 @@ namespace Calculator
         {
             int rightParenthises = 0;
             int leftParenthises = 0;
-            for (int i = 0; i < equate.Count; i++) //((
+            for (int i = 0; i < equate.Count; i++) 
             {
                 if (equate.ElementAt(i) == "(")
                 {
@@ -363,6 +386,9 @@ namespace Calculator
             Output2.Text += Zero.Text; 
         }
 
-        
+        private void done_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
