@@ -101,6 +101,10 @@ namespace Calculator
                         equate[i - 1] = result.ToString();
                         i--; //reset i 
                     }
+                    //we can't go beyond the right parenthises 
+                    //so we end the loop
+                    else if (equate.ElementAt(i) == ")")
+                        i = equate.Count + 1;
                 }
                 for (int i = 0 + position; i < equate.Count; i++) //checking for *
                 {
@@ -136,8 +140,6 @@ namespace Calculator
                         equate.RemoveAt(i);
                         equate[i - 1] = result.ToString();
                         i--; //reset i 
-                        
-
                     }
                 }
                 for (int i = 0 + position; i < equate.Count; i++) //checking for )
@@ -153,13 +155,13 @@ namespace Calculator
             }
             return result;
         }
-        //returns true if their is a open parenthises
+        //returns true if their is an open parenthises
         //that needs to be closed
         private bool FindParenthises()
         {
             int rightParenthises = 0;
             int leftParenthises = 0;
-            for (int i = 0; i < equate.Count; i++)
+            for (int i = 0; i < equate.Count; i++) //((
             {
                 if (equate.ElementAt(i) == "(")
                 {
@@ -193,6 +195,7 @@ namespace Calculator
         {
             //check if it says error
             FindError();
+
             equate.Add(inputAndOutput.Text);
 
             //reset the textbox
