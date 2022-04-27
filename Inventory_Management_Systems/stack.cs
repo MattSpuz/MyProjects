@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
@@ -188,12 +188,15 @@ namespace Inventory_Management_Systems
         //sort the items in alphebetical order
         public void InsertionSort() //sort everything
         {
-            for (int i = 0; i != counter.Count(); i++)
+            List<Node> temp = counter;
+            //sort the array
+            for (int n = 0; n < size(); n++) 
             {
-                Array.Sort(counter.ElementAt(i).shelf, StringComparer.Ordinal);
+                //rather than retyping code I will be reusing the below InsertionSort();
+                InsertionSort(n);
             }
-
         }
+
         public void InsertionSort(int position) //sort one shelf
         {
             string[] temp = counter.ElementAt(position).shelf;
