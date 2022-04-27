@@ -36,7 +36,7 @@ namespace Inventory_Management_Systems._2
 
         private void sortButton_Click(object sender, EventArgs e)
         {
-            Program.Shelved.InsertionSort(0);
+            Program.Shelved.InsertionSort();
             ShelfPrint.Text = Program.Shelved.print();
         }
     }
