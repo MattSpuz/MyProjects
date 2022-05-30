@@ -1,0 +1,79 @@
+﻿@model Temp
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+
+<h2 class="p-2">Add Food</h2>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Add" method="post">
+    <div class="form-row addMargin">
+        <div class="col-sm-1">
+            <label asp-for="FoodName">Food:</label>
+        </div>
+        <div class="col">
+            <input asp-for="FoodName" type="text" class="form-control">
+            <span asp-validation-for="FoodName" class="text-danger"></span>
+        </div>
+    </div><!--End FoodName row-->
+    <div class="form-row addMargin">
+        <div class="col-sm-1">
+            <label asp-for="Calories">Calories:</label>
+        </div>
+        <div class="col">
+            <input asp-for="Calories" type="text" class="form-control">
+            <span asp-validation-for="Calories" class="text-danger"></span>
+        </div>
+    </div><!--End Calories row-->
+    <div class="form-row addMargin">
+        <div class="col-sm-1">
+            <label asp-for="Sugar">Sugar:</label>
+        </div>
+        <div class="col">
+            <input asp-for="Sugar" type="text" class="form-control">
+            <span asp-validation-for="Sugar" class="text-danger"></span>
+        </div>
+    </div><!--End Sugar row-->
+    <div class="form-row addMargin">
+        <div class="col-sm-1">
+            <label asp-for="Fat">Fat:</label>
+        </div>
+        <div class="col">
+            <input asp-for="Fat" type="text" class="form-control">
+            <span asp-validation-for="Fat" class="text-danger"></span>
+        </div>
+    </div><!--End Fat row-->
+    <div class="form-row addMargin">
+        <div class="col-sm-1">
+            <label asp-for="Sodium">Sodium:</label>
+        </div>
+        <div class="col">
+            <input asp-for="Sodium" type="text" class="form-control">
+            <span asp-validation-for="Sodium" class="text-danger"></span>
+        </div>
+    </div><!--End Sodium row-->
+    <div class="form-row addMargin">
+        <div class="col-sm-1">
+            <label asp-for="Protein">Protein:</label>
+        </div>
+        <div class="col">
+            <input asp-for="Protein" type="text" class="form-control">
+            <span asp-validation-for="Protein" class="text-danger"></span>
+        </div>
+    </div><!--End Protein row-->
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-row addMargin">
+        <div class="col-sm-1"></div>
+        <div class="col">
+            <button type="submit" class="btn btn-dark mr-2">Add</button>
+            <a asp-action="Index" class="btn btn-dark">Cancel</a>
+        </div>
+    </div><!--End Submit/Cancel row-->
+</form>
+<hr />
+

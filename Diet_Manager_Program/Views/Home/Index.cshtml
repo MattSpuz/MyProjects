@@ -1,0 +1,67 @@
+﻿@model List<Temp>
+
+@{
+    ViewData["Title"] = "Diet Manager";
+}
+
+<script>
+function checkFullness() {
+    if (@ViewData.Model.Count == 0) {
+        document.getElementById("post").innerHTML = "The table is empty";
+        document.getElementById("post").className += "bg-danger";
+    }
+    else if (@ViewData.Model.Count == 10) {
+        document.getElementById("post").innerHTML = "The table is full";
+        document.getElementById("post").className += "bg-success";
+    }        
+}
+</script>
+
+<body onload="checkFullness()">
+<h2 class="text-center p-2 " id="post"></h2>
+
+
+@if(User.Identity.IsAuthenticated)
+{
+    <h2 class="p-2">Welcome @User.Identity.Name</h2>
+} else {
+    <h2 class="p-2">Welcome</h2>
+}
+
+    <a asp-action="tryAdd" class="btn btn-dark mr-2">Add a food item</a>
+
+    <table class="table table-striped mt-2">
+        <thead>
+            <tr><th>Food Name</th><th>Calories</th><th>Sugar</th><th>Fat</th><th>Sodium</th><th>Protein</th></tr>
+        </thead>
+        <tbody>
+            @foreach (Temp temp in Model)
+            {
+            <tr>
+                <td>@temp.FoodName</td>
+                <td>@temp.Calories</td>
+                <td>@temp.Sugar<small>g</small></td>
+                <td>@temp.Fat<small>g</small></td>
+                <td>@temp.Sodium<small>mg</small></td>
+                <td>@temp.Protein<small>g</small></td>
+                <td><a asp-action="Edit" asp-route-id="@temp.Id" class="btn btn-dark">Edit</a></td>
+                <td><a asp-action="Delete" asp-route-id="@temp.Id" class="btn btn-dark">Delete</a></td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr><td colspan="4"></td></tr>
+            <tr>
+                <td><strong class="mr-1">Total:</strong></td>
+                <td>@Model.Sum(t => t.Calories)?.ToString("n2")</td>
+                <td>@Model.Sum(t => t.Sugar)?.ToString("n2")<small>g</small></td>
+                <td>@Model.Sum(t => t.Fat)?.ToString("n2")<small>g</small></td>
+                <td>@Model.Sum(t => t.Sodium)?.ToString("n2")<small>mg</small></td>
+                <td>@Model.Sum(t => t.Protein)?.ToString("n2")<small>g</small></td>
+                <td></td>
+                <td><a asp-action="tryDeleteAll" class="btn btn-dark">Delete All</a></td>
+            </tr>
+        </tfoot>
+    </table>
+    <hr />
+    </body>

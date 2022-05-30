@@ -1,0 +1,60 @@
+﻿
+@{
+    var returnUrl = ViewData["ReturnUrl"] as string;
+    if(returnUrl == null)
+    {
+        returnUrl = "/home/index";
+    }
+    var error = TempData["Error"] as string;
+}
+
+<script>
+function passwordVisablity() {
+    let input = document.getElementById('pass').type;
+    if (input === "password") {
+        document.getElementById('pass').type = 'text';
+        document.getElementById('show').value = 'hide';
+    }
+    else {
+        document.getElementById('pass').type = 'password';
+        document.getElementById('show').value = 'show';
+    }
+}
+</script>
+
+<h2 class="p-2">login</h2>
+@if(!string.IsNullOrEmpty(error))
+{
+    <h2 class="alert-danger" style="padding:20px;">@error</h2>
+}
+
+<div class="container-fluid m-3">
+        <!--System.Net.WebUtility.UrlEncode - encodes the return url-->
+    <form action="/login?ReturnUrl=@System.Net.WebUtility.UrlEncode(returnUrl)" method="post">
+        <div class="form-row addMargin">
+            <div class="col-sm-1">
+                <label>Username:</label>
+            </div>
+            <div class="col">
+                <input type="text" name="username" placeholder="Username" class="form-control"/>
+            </div>
+        </div><!--End username row-->
+        <div class="form-row addMargin">
+            <div class="col-sm-1">
+                <label>Password:</label>
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Password" id="pass" class="form-control"/>
+                    <div class="input-group-append pl-2 pr-2">
+                           <input type="button" onclick="passwordVisablity();"  id="show" value="Show"/>
+                    </div>
+                </div>
+            </div>
+        </div><!--End password row-->        
+            <button type="submit" class="btn btn-dark mr-2">Login</button>
+            <a asp-action="Index" class="btn btn-dark mr-2">Cancel</a>
+            <a asp-action="SignIn" class="btn btn-info">Don't have an Account?</a>
+    </form>
+
+</div>

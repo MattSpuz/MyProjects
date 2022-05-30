@@ -1,0 +1,63 @@
+﻿@model Users
+
+@{
+    ViewData["Title"] = "SignIn";
+}
+
+<script>
+function passwordVisablity() {
+    let input = document.getElementById('pass').type;
+    if (input === "password") {
+        document.getElementById('pass').type = 'text';
+        document.getElementById('show').value = 'hide';
+    }
+    else {
+        document.getElementById('pass').type = 'password';
+        document.getElementById('show').value = 'show';
+    }
+}
+</script>
+
+<h2 class="p-2">Sign in</h2>
+
+<form asp-action="SignIn" method="post">
+<div class="container-fluid m-3">
+    <div class="form-row addMargin">
+        <div class="col-sm-1">
+            <label asp-for="UserName">Username:</label>
+        </div>
+        <div class="col">
+            <input asp-for="UserName" type="text" class="form-control">
+        </div>
+    </div><!--End UserName row-->
+    <div class="form-row addMargin">
+        <div class="col-sm-1">
+            <label asp-for="Password">Password:</label>
+        </div>
+        <div class="col">
+            <div class="input-group">
+                <input asp-for="Password" type="password" id="pass" class="form-control">
+                <div class="input-group-append pl-2 pr-2">
+                    <input type="button" onclick="passwordVisablity();"  id="show" value="Show"/>
+                </div>
+            </div>
+        </div>
+    </div><!--End Password row-->
+    <div class="form-row addMargin">
+        <div class="col-sm-1">
+            <label asp-for="Name">Name:</label>
+        </div>
+        <div class="col">
+            <input asp-for="Name" type="text" class="form-control">
+        </div>
+    </div><!--End Name row-->
+
+    <div class="form-row addMargin">
+        <div class="col-sm-1"></div>
+        <div class="col">
+            <button type="submit" class="btn btn-dark mr-2">Add</button>
+            <a asp-action="Index" class="btn btn-dark">Cancel</a>
+        </div>
+    </div><!--End Submit/Cancel row-->
+</div>
+</form>
