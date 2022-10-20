@@ -1,0 +1,11 @@
+C:\Users\Matthew\Desktop\Projects2022\C#_randNumber\test3\test3\bin\Debug\test3.exe.config
+C:\Users\Matthew\Desktop\Projects2022\C#_randNumber\test3\test3\bin\Debug\test3.exe
+C:\Users\Matthew\Desktop\Projects2022\C#_randNumber\test3\test3\bin\Debug\test3.pdb
+C:\Users\Matthew\Desktop\Projects2022\C#_randNumber\test3\test3\obj\Debug\test3.csproj.AssemblyReference.cache
+C:\Users\Matthew\Desktop\Projects2022\C#_randNumber\test3\test3\obj\Debug\test3.csproj.SuggestedBindingRedirects.cache
+C:\Users\Matthew\Desktop\Projects2022\C#_randNumber\test3\test3\obj\Debug\test3.Form1.resources
+C:\Users\Matthew\Desktop\Projects2022\C#_randNumber\test3\test3\obj\Debug\test3.Properties.Resources.resources
+C:\Users\Matthew\Desktop\Projects2022\C#_randNumber\test3\test3\obj\Debug\test3.csproj.GenerateResource.cache
+C:\Users\Matthew\Desktop\Projects2022\C#_randNumber\test3\test3\obj\Debug\test3.csproj.CoreCompileInputs.cache
+C:\Users\Matthew\Desktop\Projects2022\C#_randNumber\test3\test3\obj\Debug\test3.exe
+C:\Users\Matthew\Desktop\Projects2022\C#_randNumber\test3\test3\obj\Debug\test3.pdb
