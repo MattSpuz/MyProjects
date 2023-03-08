@@ -1,8 +1,14 @@
-﻿@model List<Temp>
+@model List<Temp>
 
 @{
     ViewData["Title"] = "Diet Manager";
 }
+
+<style>
+    .roundedEdges {
+        border-radius: 25px;
+    }
+</style>
 
 <script>
 function checkFullness() {
@@ -18,7 +24,7 @@ function checkFullness() {
 </script>
 
 <body onload="checkFullness()">
-<h2 class="text-center p-2 " id="post"></h2>
+<h2 class="roundedEdges text-center p-2 " id="post"></h2>
 
 
 @if(User.Identity.IsAuthenticated)
