@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using TempManager.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TempManager.Models
 {
@@ -10,5 +12,6 @@ namespace TempManager.Models
 
         public DbSet<Temp> Temps { get; set; }
         public DbSet<Users> User { get; set; }
+        public DbSet<Histories> History { get; set; }
     }
 }
