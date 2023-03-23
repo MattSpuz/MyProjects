@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Diet Manager";
 }
+@section Scripts {
+         <script type="text/javascript" src="~/scripts/main.js"></script>
+}
 
 <style>
     .roundedEdges {
@@ -10,20 +13,7 @@
     }
 </style>
 
-<script>
-function checkFullness() {
-    if (@ViewData.Model.Count == 0) {
-        document.getElementById("post").innerHTML = "The table is empty";
-        document.getElementById("post").className += "bg-danger";
-    }
-    else if (@ViewData.Model.Count == 10) {
-        document.getElementById("post").innerHTML = "The table is full";
-        document.getElementById("post").className += "bg-success";
-    }        
-}
-</script>
-
-<body onload="checkFullness()">
+<body onload="checkFullness(@ViewData.Model.Count)">
 <h2 class="roundedEdges text-center p-2 " id="post"></h2>
 
 
@@ -35,6 +25,7 @@ function checkFullness() {
 }
 
     <a asp-action="tryAdd" class="btn btn-dark mr-2">Add a food item</a>
+    <a asp-action="AddSaved" class="btn btn-dark mr-2">Add saved food item</a>
 
     <table class="table table-striped mt-2">
         <thead>
