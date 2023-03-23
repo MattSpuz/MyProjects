@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using TempManager.Models;
 using System.Threading.Tasks;
@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Ch11Ex1TempManager.Controllers
 {
@@ -61,14 +62,16 @@ namespace Ch11Ex1TempManager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Temp temp)
+        public IActionResult Add(Temp temp, Histories History)
         {
             var tempExists = data.Temps.FirstOrDefault(t => t.FoodName == temp.FoodName);
+
             if(tempExists == null) //check for duplicates
             {
                 if (ModelState.IsValid) //check if everything else is valid
                 {
                     data.Temps.Add(temp);
+                    data.History.Add(History);
                     data.SaveChanges();
 
                     return RedirectToAction("Index");
@@ -84,6 +87,40 @@ namespace Ch11Ex1TempManager.Controllers
                 ModelState.AddModelError("", "Name already exists.");
                 ModelState.AddModelError("", "Please correct all errors.");
                 return View(temp);
+            }
+        }
+
+        //Add Saved item
+
+        [HttpGet]
+        [Authorize]
+        public ViewResult AddSaved()
+        {
+            //List<Histories> HistoriesList = new List<Histories>();
+            var HistoriesList = data.History.OrderBy(t => t).ToList();
+            ViewBag.L = HistoriesList;
+
+            var savedItems = data.History.OrderBy(t => t).ToList();
+            return View(new Histories());
+        }
+
+
+        [HttpPost]
+        public ActionResult AddSavedValue(Temp temp)
+        {
+            var History = data.History.OrderBy(t => t.FoodName);
+            var tempExists = data.Temps.FirstOrDefault(t => t == History);
+
+            if (tempExists == null) //check for duplicates
+            {
+                data.Temps.Add(temp);
+                //data.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("AddSaved");
             }
         }
 
@@ -139,7 +176,6 @@ namespace Ch11Ex1TempManager.Controllers
         }
 
         //Edit
-
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
