@@ -1,0 +1,38 @@
+﻿@model Histories
+
+
+@{
+    ViewData["Title"] = "Add Saved";
+}
+
+<h2>Add Saved Item</h2>
+
+@using (Html.BeginForm("AddSaved", "HomeController", FormMethod.Post))
+{
+
+
+<form asp-action="AddSavedValue" method="post">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <table class="table table-striped mt-2">
+                <thead>
+                    <tr><th>Food Name</th><th>Calories</th><th>Sugar</th><th>Fat</th><th>Sodium</th><th>Protein</th></tr>
+                </thead>
+                <tbody>
+                @foreach (var His in ViewBag.L)
+                {
+                        <tr>
+                            <td>@His.FoodName</td>
+                            <td>@His.Calories</td>
+                            <td>@His.Sugar<small>g</small></td>
+                            <td>@His.Fat<small>g</small></td>
+                            <td>@His.Sodium<small>mg</small></td>
+                            <td>@His.Protein<small>g</small></td>
+                            <td><button type="submit" asp-action="AddSavedValue" asp-for="@His.Id" class="btn btn-dark mr-2">Select</button></td>
+                        </tr>
+                }
+                </tbody>
+        </table>
+    <a asp-action="Index" class="btn btn-dark">Cancel</a>
+</form>
+}
